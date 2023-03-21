@@ -70,8 +70,6 @@ EnhancedVolcano(resLFC,
                 pointSize=4,
                 colCustom = keyvals,
                 caption = 'LFC cutoff, 2; p-adj cutoff, 0.05',
-                xlab = "p-adj",
-                ylab = "Log fold change"
                 )
 dev.off()
 
@@ -129,7 +127,6 @@ gostres_down_plot
 #PF4_EGFminus vs. NaCl_EGFminus
 keep = rowSums(counts(ddsTxi)) >= 10
 dds = ddsTxi[keep,]
-# dds$Treatment = relevel(dds$Treatment, ref = "NaCl_EGFminus")
 dds$Treatment = relevel(dds$Treatment, ref = "NaCl_EGFminus")
 dds = DESeq(dds)
 res = results(dds, contrast=c("Treatment","PF4_EGFminus","NaCl_EGFminus"))
@@ -163,8 +160,7 @@ EnhancedVolcano(resLFC,
                pointSize=4,
                colCustom = keyvals,
                caption = 'LFC cutoff, 2; p-adj cutoff, 0.05',
-               xlab = "p-adj",
-               ylab = "Log fold change")
+                )
 dev.off()
 
 #MA plot
@@ -242,7 +238,7 @@ plot(fit,shape = "ellipse",
      labels = "")
 dev.off()
 
-#Intersection plus - minus - upreg
+#Intersection plus - minus - downreg
 intersect_downreg = intersect(plus_downreg_genes, minus_downreg_genes)
 intersect = length(intersect_downreg)
 plus_downreg = length(plus_downreg_genes)-length(intersect_downreg)
@@ -259,4 +255,3 @@ plot(fit,shape = "ellipse",
      lty = 1:3,
      labels = "")
 dev.off()
-
